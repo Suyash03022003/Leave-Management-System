@@ -144,10 +144,7 @@
                     <form method='post' action='../pages/SuperAdmin/editLeaves.php' >
                         <td> ". $row['leaveType'] . "</td>
                         <td> ". $row['balance'] . "</td>
-                        <td> ". $row['lastUpdatedOn'] . "</td>
-                        <td> ". $row['status'] . "</td>
-                        <td> " . date( 'd-m-Y' , strtotime($row['joiningDate']) ) ."</td>
-                        <td> " . date( 'd-m-Y' , strtotime($row['deactivationDate']) ) . "</td>
+                        <td> ". date( 'd-m-Y H:i' , strtotime( $row['lastUpdatedOn'] ) )  . "</td>
                         <td><a href='../../pages/SuperAdmin/editLeaves.php?userId=" . $row['userId'] . "&leaveId=" . $row['leaveId'] . "' name='manage' class='btn' > Manage </a></td>
                     </form>
                 </tr>";                
@@ -161,9 +158,6 @@
             <th>LEAVE TYPE</th>
             <th>BALANCE</th>
             <th>LAST UPDATED ON</th>
-            <th>STATUS</th>
-            <th>JOINING DATE</th>
-            <th>DEACTIVATION DATE</th>
             <th></th>
             </tr>
             </thead>

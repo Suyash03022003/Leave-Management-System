@@ -235,7 +235,7 @@
   width: 50px;
   background: none;
 }
-.home-section{
+.home-section , .emp-home-section{
   position: relative;
   background: #E4E9F7;
   min-height: 100vh;
@@ -246,10 +246,19 @@
   padding-bottom: 7px;
   z-index: 2;
 }
+
+.emp-home-section{
+
+  width:calc(150% - 78px) ;
+  min-width: calc(100% - 78px);
+
+}
+
 .sidebar.open ~ .home-section{
   left: 250px;
   width: calc(100% - 250px);
 }
+
 .home-section .text{
   display: inline-block;
   color: #11101d;
@@ -257,6 +266,7 @@
   font-weight: 500;
   margin: 18px
 }
+
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;
