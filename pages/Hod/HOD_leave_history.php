@@ -22,56 +22,72 @@
     $conn = sql_conn();
     ?>
     <section class="home-section">
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-        </div>
+        <?php
+        include "../../includes/nav.php";
+        ?>
         <div class="manageUserMain">
-            <h1 class="heading">Leaves Applied</h1>
+            <h1 class="heading">Leave History</h1>
             <div class="User">
-                
-                <table class="tablecontent">
-                    <?php 
-                    $email=$_SESSION['email'] ;
-                    // $deptId= $_SESSION['deptId'] ;
-                    // $sql1 = "SELECT userId FROM User where email = '$email' ";
-                    $sql1 = "SELECT * FROM leavedetails where userId IN (SELECT userId FROM user where deptId = '$_SESSION[deptId]') AND status = 'PENDING'";
+                <table class="tablecontent" width="100%" class="table table-hover" id="dataTables-example">
+
+                    <!-- $db = mysqli_connect("localhost", "root", "", "") or die("connectiion Failed"); -->
+                    <?php
+                    $email = $_SESSION['email'];
+                    $sql1 = "SELECT * FROM leavedetails where userId = (SELECT deptHod FROM department INNER JOIN user ON department.deptHod = user.userId where email = '$email') ";
+
                     $res = mysqli_query($conn, $sql1) or die("result failed in table");
 
                     if (mysqli_num_rows($res) > 0) { ?>
                         <thead>
                             <tr>
-                                <th>Applicant Name</th>
                                 <th>Leave Type</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Reason</th>
+                                <th>Application Date</th>
+                                <th>Action</th>
                                 <th>Status</th>
-                                <th>View Details</th>
                             </tr>
                         </thead>
-                    <?php }
-                    
-                    else{
-                        echo "<p class='heading' >NO REQUESTS AT THIS TIME !!</p>";
-                    }    
+                    <?php } ?>
 
-                    ?>
-
-                    <tbody id="tbody">
+                    <tbody>
                         <?php
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $name = $row['userId'];
-                            $fetch_name = "SELECT fullName FROM user WHERE userId = $name;";
-                            $fetch_name_result = mysqli_query($conn, $fetch_name);
-                            $fetched_name_row = mysqli_fetch_assoc($fetch_name_result);
                         ?>
                             <tr>
-                                <td><?php echo $fetched_name_row['fullName']  ?> </td>
-                                <td><?php echo $row['leaveType']  ?> </td>
-                                <td><?php echo $row['status'] ?></td>
+                                <td> <?php echo $row['leaveType']  ?> </td>
+                                <td><?php echo $row['startDate'] ?> </td>
+                                <td><?php echo $row['endDate'] ?></td>
+                                <td><?php echo $row['reason'] ?></td>
+
+                                <td><?php echo $row['dateTime'] ?></td>
                                 <td class="text-end">
-                                    <a href="HOD_leave_approval.php?id=<?php echo $row['leaveInsId']?>"><i class="fa-solid fa-eye view"></i></a>
+                                    <a href="users.php?editid=<?php echo $row['userId'] ?>" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen view"></i></a>
+                                    <a href="users.php?sid=<?php echo $row['userId'] ?>" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash view"></i></a>
                                 </td>
+                                <td> <?php echo $row['status'] ?> </td>
                             </tr>
                         <?php } ?>
                     </tbody>
+                    <!-- for  Delete button  -->
+                    <?php
+                    if (isset($_GET['sid'])) {
+                        include "config.php";
+                        $sid = $_GET['sid'];
+                        $sql = "DELETE FROM serviceprovider WHERE sid=$sid";
+                        $result = mysqli_query($db, $sql) or die("die in uses.php delete function");
+                    }
+
+                    if (isset($_GET['editid'])) {
+                        include "config.php";
+                        $editid = $_GET['editid'];
+                        // $sql= "DELETE FROM serviceprovider WHERE sid=$editid";
+                        // $result=mysqli_query($db,$sql) or die("die in uses.php edit function");
+                    }
+                    ?>
+
+
                 </table>
             </div>
         </div>

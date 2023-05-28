@@ -48,23 +48,16 @@
      <li>
        <a href="./HOD_leave_history.php">
        <i class="fa-solid fa-building-user"></i>
-         <span class="links_name">Leaves Applied</span>
+         <span class="links_name">Leave History</span>
        </a>
-       <span class="tooltip">Leaves Applied</span>
+       <span class="tooltip">Leave History</span>
      </li>
      <li>
        <a href="./HOD_requestPage.php">
        <i class="fa-solid fa-code-pull-request"></i>
-         <span class="links_name">Staff Request</span>
+         <span class="links_name">Leave Request</span>
        </a>
-       <span class="tooltip">Staff Request</span>
-     </li>
-     <li>
-       <a href="#">
-       <i class="fas fa-user-cog"></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Leave Request</span>
      </li>
      <li class="profile">
          <div class="profile-details">

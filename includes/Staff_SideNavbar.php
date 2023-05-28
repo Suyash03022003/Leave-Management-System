@@ -41,17 +41,9 @@
      <li>
        <a href="./staff_leave_history.php">
        <i class="fa-solid fa-building-user"></i>
-         <span class="links_name">Leave Listory</span>
+         <span class="links_name">Leave History</span>
        </a>
-       <span class="tooltip">Leave Listory</span>
-     </li>
-     
-     <li>
-       <a href="#">
-       <i class="fas fa-user-cog"></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Leave History</span>
      </li>
      <li class="profile">
          <div class="profile-details">

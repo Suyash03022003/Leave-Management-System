@@ -28,9 +28,9 @@ include "../../includes/Authentication_verified.php"
   $conn = sql_conn();
   ?>
   <section class="home-section">
-    <div class="horizontal_navbar">
-      <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-    </div>
+    <?php
+    include "../../includes/nav.php";
+    ?>
     <div class="container mt-2 d-flex justify-content-center ">
       <form action="../../utils/insertLeave.php" method="POST" class="bg-white shadow pl-5 pr-5 pb-5 pt-2 mt-5 rounded-lg " style="border-right:6px solid #11101D;">
         <h4 class="pb-3 pt-2" style="color: #11101D;">Apply for Leave</h4>
