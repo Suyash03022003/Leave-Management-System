@@ -57,3 +57,7 @@ body{
 .user_name {
     margin-right: 30px;
 }
+
+table {
+    overflow-x: scroll;
+}
