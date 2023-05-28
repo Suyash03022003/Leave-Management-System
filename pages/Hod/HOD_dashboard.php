@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<?php error_reporting(0);
-?>
+<?php error_reporting(0);?>
 <html lang="en">
 
 <head>

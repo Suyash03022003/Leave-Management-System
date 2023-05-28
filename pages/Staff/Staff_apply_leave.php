@@ -30,18 +30,18 @@ include "../../includes/Authentication_verified.php"
       <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
     </div>
     <div class="container mt-2 d-flex justify-content-center ">
-   <?php     
+      <?php
 
-  $email = $_SESSION['email'];
- $sql1 = "SELECT * FROM leavebalance where userId= (SELECT userId FROM User where email = '$email')";
+      $email = $_SESSION['email'];
+      $sql1 = "SELECT * FROM leavebalance where userId= (SELECT userId FROM User where email = '$email')";
 
- $res = mysqli_query($conn, $sql1) or die("result failed in table");
+      $res = mysqli_query($conn, $sql1) or die("result failed in table");
 
- while ($row = mysqli_fetch_assoc($res)) { ?>
+      while ($row = mysqli_fetch_assoc($res)) { ?>
 
-   <?php $balance =  $row['balance'] ?>
-  
- <?php } ?>
+        <?php $balance =  $row['balance'] ?>
+
+      <?php } ?>
 
       <?php
       $email = $_SESSION['email'];
@@ -49,7 +49,7 @@ include "../../includes/Authentication_verified.php"
 
       ?>
       <form action="../../utils/insertLeave.php" method="POST" class="bg-white shadow pl-5 pr-5 pb-5 pt-2 mt-5 rounded-lg " style="border-right:6px solid #11101D;">
-      
+
         <h4 class="pb-3 pt-2" style="color: #11101D;">Apply for Leave</h4>
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -93,13 +93,13 @@ include "../../includes/Authentication_verified.php"
         </div>
         <div class="form-row">
           <div class="form-group col-md-3">
-            <input type="text"  name="fromDate" data-toggle="tooltip" data-placement="top" title="Start Leave Date" placeholder="From*" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="fromDateId" placeholder="To" required>
+            <input type="text" name="fromDate" data-toggle="tooltip" data-placement="top" title="Start Leave Date" placeholder="From*" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="fromDateId" placeholder="To" required>
 
           </div>
 
           <div class="form-group col-md-2">
-            <select required  name="fromType" class="form-control border-top-0 border-right-0 border-left-0 border border-dark" id="fromDateId1" >
-            <option selected disabled>Day Type*</option>
+            <select required name="fromType" class="form-control border-top-0 border-right-0 border-left-0 border border-dark" id="fromDateId1">
+              <option selected disabled>Day Type*</option>
               <option value="FirstHalf">First Half</option>
               <option value="SecondHalf">Second Half</option>
               <option value="Full">Full</option>
@@ -155,7 +155,7 @@ include "../../includes/Authentication_verified.php"
           // fromdayType.addEventListener('change', calculateMondayAndHoliday);
 
 
-          var balance=0; //Initial Balance
+          var balance = 0; //Initial Balance
 
           // Function to find leave type and count leave type 
           function findLeaveType() {
@@ -172,7 +172,7 @@ include "../../includes/Authentication_verified.php"
             xhttp.onreadystatechange = function() {
               if (this.readyState === 4 && this.status === 200) {
                 // Response received, do something with it if needed
-               balance = parseInt(this.responseText);
+                balance = parseInt(this.responseText);
                 console.log(balance)
               }
             };
@@ -195,7 +195,7 @@ include "../../includes/Authentication_verified.php"
               const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1;
               // Display the total days in the input field
               totalDaysInput.value = totalDays;
-              
+
               // To Check Balance is sufficent or not 
               if (balance < totalDays) {
                 alert("insufficient leave Balance !! Try Another Dates");
@@ -249,44 +249,42 @@ include "../../includes/Authentication_verified.php"
                   // Display the total days in the input field
                   totalDaysInput.value = totalDays;
                   break;
-                }else{
+                } else {
                   const timeDiff = endDate.getTime() - startDate.getTime();
-                  const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24))+0.5;
+                  const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 0.5;
                   // Display the total days in the input field
                   totalDaysInput.value = totalDays;
                 }
               }
             }
 
-           if(selectedFromValue==="FirstHalf" && selectedToValue==="FirstHalf" ){
-                const timeDiff = endDate.getTime() - startDate.getTime();
-                alert("hello")
-                const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-                // Display the total days in the input field
-                totalDaysInput.value = totalDays;
-              } 
-              else if(selectedFromValue==="FirstHalf" && selectedToValue==="Full" ) {
-                const timeDiff = endDate.getTime() - startDate.getTime();
-                const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 0.5
-                // Display the total days in the input field
-                totalDaysInput.value = totalDays;
-              }
-              else if(selectedFromValue==="SecondHalf" && selectedToValue==="SecondHalf" ) {
-                const timeDiff = endDate.getTime() - startDate.getTime();
-                const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
-                // Display the total days in the input field
-                totalDaysInput.value = totalDays;
-              }else if(selectedFromValue==="Full" && selectedToValue==="Full" ) {
-                const timeDiff = endDate.getTime() - startDate.getTime();
-                const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24))+1
-                // Display the total days in the input field
-                totalDaysInput.value = totalDays;
-              }else if(selectedFromValue==="SecondHalf" && selectedToValue==="Full" ) {
-                const timeDiff = endDate.getTime() - startDate.getTime();
-                const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24))+0.5
-                // Display the total days in the input field
-                totalDaysInput.value = totalDays;
-              }
+            if (selectedFromValue === "FirstHalf" && selectedToValue === "FirstHalf") {
+              const timeDiff = endDate.getTime() - startDate.getTime();
+              alert("hello")
+              const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+              // Display the total days in the input field
+              totalDaysInput.value = totalDays;
+            } else if (selectedFromValue === "FirstHalf" && selectedToValue === "Full") {
+              const timeDiff = endDate.getTime() - startDate.getTime();
+              const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 0.5
+              // Display the total days in the input field
+              totalDaysInput.value = totalDays;
+            } else if (selectedFromValue === "SecondHalf" && selectedToValue === "SecondHalf") {
+              const timeDiff = endDate.getTime() - startDate.getTime();
+              const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24))
+              // Display the total days in the input field
+              totalDaysInput.value = totalDays;
+            } else if (selectedFromValue === "Full" && selectedToValue === "Full") {
+              const timeDiff = endDate.getTime() - startDate.getTime();
+              const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1
+              // Display the total days in the input field
+              totalDaysInput.value = totalDays;
+            } else if (selectedFromValue === "SecondHalf" && selectedToValue === "Full") {
+              const timeDiff = endDate.getTime() - startDate.getTime();
+              const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 0.5
+              // Display the total days in the input field
+              totalDaysInput.value = totalDays;
+            }
             //If Sunday and the next day of Sunday are half days, calculate the total day
             if (dayOfWeek === 1 && selectedToValue === "FirstHalf") {
               alert("It's Monday!");
@@ -300,7 +298,6 @@ include "../../includes/Authentication_verified.php"
 
 
           }
-
         </script>
 
         <!-- Reason -->
@@ -308,7 +305,7 @@ include "../../includes/Authentication_verified.php"
         <div class="form-row mb-4">
 
 
-          <input type="text" required class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="Enter Reason*" name="reason" >
+          <input type="text" required class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="Enter Reason*" name="reason">
 
         </div>
 
@@ -324,7 +321,7 @@ include "../../includes/Authentication_verified.php"
               <?php $sql1 = "SELECT * FROM user";
 
               $res = mysqli_query($conn, $sql1) or die("result failed in table");
-              
+
               while ($row = mysqli_fetch_assoc($res)) { ?>
                 <option><?php echo $row['email'] ?></option>
 
@@ -337,7 +334,7 @@ include "../../includes/Authentication_verified.php"
             <input type="text" name="lecDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Lecture Date" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="lecDateId">
           </div>
           <div class="form-group col-md-2">
-            <input type="text" name="lecStartTime" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="start Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
+            <input type="text" name="lecStartTime" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Start Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
           </div>
           <div class="form-group col-md-2">
             <input type="time " name="lecEndTime" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="End Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
@@ -353,25 +350,24 @@ include "../../includes/Authentication_verified.php"
           </div>
         </div>
 
-       
+
 
         <script>
- const lectureDate = document.getElementById('lecDateId');
-lectureDate.addEventListener('change', isLectureDateInRange);
+          const lectureDate = document.getElementById('lecDateId');
+          lectureDate.addEventListener('change', isLectureDateInRange);
 
-function isLectureDateInRange(){
-  var date = new Date(lectureDate.value);
-  startDate = new Date(startDateInput.value);
-  endDate = new Date(endDateInput.value);
+          function isLectureDateInRange() {
+            var date = new Date(lectureDate.value);
+            startDate = new Date(startDateInput.value);
+            endDate = new Date(endDateInput.value);
 
-   if(!(date >= startDate && date <= endDate)){
-alert("Date is invalid! Choose a date between Your Leave Dates");
-lectureDate.value=" "
-   }
-}
-
+            if (!(date >= startDate && date <= endDate)) {
+              alert("Date is invalid! Choose a date between Your Leave Dates");
+              lectureDate.value = " "
+            }
+          }
         </script>
-        
+
 
 
 
@@ -379,7 +375,7 @@ lectureDate.value=" "
 
         <div class="form-row" id="dynamicadd1">
           <div class="form-group col-md-3">
-            <select id="inputState" name="adjustedWith1" class="form-control border-top-0 border-right-0 border-left-0 border border-dark">
+            <select id="inputState" name="taskAdjustedWith" class="form-control border-top-0 border-right-0 border-left-0 border border-dark">
               <option selected disable>Task Adjust With.. </option>
               <?php $sql1 = "SELECT * FROM user";
               $res = mysqli_query($conn, $sql1) or die("result failed in table");
@@ -391,13 +387,13 @@ lectureDate.value=" "
 
           </div>
           <div class="form-group col-md-3">
-            <input type="text" name="sem" placeholder="Task Name" class="form-control border-top-0 border-right-0 border-left-0  border border-dark">
+            <input type="text" name="taskName" placeholder="Task Name" class="form-control border-top-0 border-right-0 border-left-0  border border-dark">
           </div>
           <div class="form-group col-md-2">
-            <input type="text" name="lecDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="From" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
+            <input type="text" name="taskFromDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="From" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
           </div>
           <div class="form-group col-md-2">
-            <input type="text" name="lecDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="To" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
+            <input type="text" name="taskToDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="To" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
           </div>
           <div class="form-group col-sm-12 col-md-1">
             <button class=" btn" id="add1" name="btn1[]" style="background-color: #11101D; color:white">Add</button>
