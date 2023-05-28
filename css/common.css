@@ -26,7 +26,6 @@ body{
     padding: 0;
     box-sizing: border-box;
     font-family: var(--Poppins) ;
-    overflow-x: hidden;
 }
 
 .horizontal_navbar {
