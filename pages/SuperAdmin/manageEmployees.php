@@ -18,18 +18,28 @@ include('../../utils/ManageUserUtils.php');
 </head>
 
 <body>
+
+    <!-- //SideNavbar -->
     <?php
     include "../../includes/super_admin_SideNavbar.php";
     ?>
+
     <section class="emp-home-section">
+
         <div class="horizontal_navbar">
             <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
         </div>
+
         <div class="manageUserMain">
+
             <h1 class="heading">Manage Employees</h1>
             <a href="../../pages/SuperAdmin/addUser.php"><button class="addUser">+</button></a>
+
             <div class="User">
+
                 <table class="tablecontent">
+
+                <!-- Table Head -->
                     <thead>
                         <tr>
                             <th>USER ID</th>
@@ -45,6 +55,9 @@ include('../../utils/ManageUserUtils.php');
                             <th>DEACTIVATE</th>
                         </tr>
                     </thead>
+
+                <!-- Table Body -->
+                
                     <tbody id="tbody">
                         <?php
 
