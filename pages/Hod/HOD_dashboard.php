@@ -20,68 +20,106 @@
 
 <body>
     <?php
-    //  session_start();
     include "../../includes/Authentication_verified.php";
 
     include "../../includes/HOD_SideNavbar.php";
     include('../../includes/_db_conn.php');
 
     $conn = sql_conn();
+
+    $email = $_SESSION['email'];
+
     ?>
     <section class="home-section">
+
+        <!-- Navbar -->
+
         <?php
         include "../../includes/nav.php";
         ?>
+
         <div class="text container">Dashboard</div>
+
         <div class="container bg-white rounded-lg shadow-lg mt-3 dash_table">
+
             <div class="row p-3 rounded-lg shadow-lg d-flex justify-content-sm-center  " style="transition: all all 0.5s ease; border-right:6px solid #11101D">
-                <?php $sql1 = "SELECT * FROM masterdata";
+
+                <?php 
+                
+                //Query to get HOD's user and leave details
+                $sql1 = "SELECT * FROM masterdata inner join leavebalance on masterdata.leaveId = leavebalance.leaveId where leavebalance.userId=( SELECT userId from user where email='$email' )";
+
                 $res = mysqli_query($conn, $sql1) or die("result failed in table");
+
                 while ($row = mysqli_fetch_assoc($res)) { ?>
+
                     <div class="col-md-3 col-sm-12  rounded-lg m-3 bg-white shadow-lg fit-content" style="border-right:6px solid #11101D ">
+
                         <div class="row p-2 pr-0 ">
-                            <!-- <div class="col-3 pl-3 pt-2   "><i class="fa-solid fa-users " style="font-size:25px; text-align: center;"></i></div> -->
+
                             <div class="col-12  ">
+
                                 <div class="row pb-1 pl-2 d-flex justify-content-sm-center">
                                     <h5><?php echo $row['leaveType'] ?></h5>
                                 </div>
+                                
                                 <div class="row d-flex justify-content-sm-center ">
                                     <!-- PHP CODE HERE -->
-                                    <h3><?php echo $row['increment'] ?></h3>
+                                    <h3><?php echo $row['balance'] ?></h3>
                                 </div>
+
                             </div>
+
                         </div>
+
                         <div class="row border-top p-2">
                             <small class="text-muted" style="font-size: smaller;"><?php echo $row['leaveDesc'] ?></small>
                         </div>
+
                     </div>
+
                 <?php } ?>
 
                 <div class="col-md-3 col-sm-12  rounded-lg m-3 bg-white shadow-lg fit-content" style="border-right:6px solid #11101D ">
                     <a href="../Hod/HOD_myteam.php" style="color: #11101D; text-decoration:none">
+
                         <div class="row p-2 pr-0 ">
-                            <!-- <div class="col-3 pl-3 pt-2   "><i class="fa-solid fa-users " style="font-size:25px; text-align: center;"></i></div> -->
+
                             <div class="col-12  ">
+
                                 <div class="row pb-1 pl-2 d-flex justify-content-sm-center">
                                     <h5 style="color: #11101D; text-decoration:none">My Team Member</h5>
                                 </div>
+
                                 <div class="row d-flex justify-content-sm-center ">
                                     <!-- PHP CODE HERE -->
 
                                     <?php
+
                                     $deptId = $_SESSION['deptId'];
+
+                                    //Query to get no. of faculties in department
+
                                     $sql = "SELECT count(userId) FROM User where deptId = '$deptId' AND position ='FACULTY' ";
+
                                     $res1 = mysqli_query($conn, $sql) or die("result failed in table");
                                     $rowscount = mysqli_fetch_array($res1);
+
                                     ?>
+
                                     <h3><?php echo $rowscount['count(userId)']  ?> </h3>
+
                                 </div>
                             </div>
+
                         </div>
+
                         <div class="row border-top p-2">
                             <small class="text-muted" style="font-size: smaller;">Team Member Details</small>
                         </div>
+
                     </a>
+
                 </div>
 
             </div>
@@ -89,24 +127,32 @@
 
         <!-- Table  for latest Leave Reqquest -->
         <div class="content mt-3 rounded-lg">
+
             <div class="container clg-12  bg-white rounded-lg dash_table" style="transition: all all 0.5s ease; border-right:6px solid #11101D">
+
                 <div class="page-title p-4">
+
                     <h3>My Leave History
                         <a href="roles.html" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-user-shield"></i> Roles</a>
                     </h3>
+
                 </div>
+
                 <div class="box box-primary">
+
                     <div class="box-body">
+
                         <table class="latest_leave" width="100%" class="table table-hover" id="dataTables-example">
 
-                            <!-- $db = mysqli_connect("localhost", "root", "", "") or die("connectiion Failed"); -->
                             <?php
-                            $email = $_SESSION['email'];
+
+                            //Query to get leave History
                             $sql1 = "SELECT * FROM leavedetails where userId = (SELECT deptHod FROM department INNER JOIN user ON department.deptHod = user.userId where email = '$email') ";
 
                             $res = mysqli_query($conn, $sql1) or die("result failed in table");
 
                             if (mysqli_num_rows($res) > 0) { ?>
+
                                 <thead>
                                     <tr>
                                         <th>Leave Type</th>
@@ -137,11 +183,17 @@
                                         </td>
                                         <td> <?php echo $row['status'] ?> </td>
                                     </tr>
+
                                 <?php } ?>
+
                             </tbody>
+
                             <!-- for  Delete button  -->
+
                             <?php
-                            if (isset($_GET['sid'])) {
+
+                            if ( isset($_GET['sid']) ) {
+
                                 include "config.php";
                                 $sid = $_GET['sid'];
                                 $sql = "DELETE FROM serviceprovider WHERE sid=$sid";

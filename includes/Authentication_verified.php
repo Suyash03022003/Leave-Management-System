@@ -1,6 +1,7 @@
 
 <?php
 session_start();
+
 $msg = "";
 if (!isset($_SESSION['email'])) {
 ?>
