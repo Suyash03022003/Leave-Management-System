@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/Staff_HomePage.css?v=<?php echo time(); ?>">
    </head>
 <body>
-  <div class="sidebar">
+  <div class="sidebar open">
     <div class="logo-details">
     <img class="bitlogo" src="../../assets/bitlogo_transparent.png" alt="profileImg">
         <div class="logo_name">LMS</div>
@@ -48,23 +48,16 @@
      <li>
        <a href="./HOD_leave_history.php">
        <i class="fa-solid fa-building-user"></i>
-         <span class="links_name">Leaves Applied</span>
+         <span class="links_name">Leave History</span>
        </a>
-       <span class="tooltip">Leaves Applied</span>
+       <span class="tooltip">Leave History</span>
      </li>
      <li>
        <a href="./HOD_requestPage.php">
        <i class="fa-solid fa-code-pull-request"></i>
-         <span class="links_name">Staff Request</span>
+         <span class="links_name">Leave Request</span>
        </a>
-       <span class="tooltip">Staff Request</span>
-     </li>
-     <li>
-       <a href="#">
-       <i class="fas fa-user-cog"></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Leave Request</span>
      </li>
      <li class="profile">
          <div class="profile-details">
@@ -73,8 +66,8 @@
            
           
            <div class="name_job">
-             <div class="name">Hod</div>
-             <div class="job">ID: 123456</div>
+             <div class="name"><?php echo $_SESSION['fullname']?></div>
+             <div class="job">ID: <?php echo $_SESSION['id']?></div>
            </div>
          </div>
          <a href="../logout.php" class="logouthyperlink"><i class="fa-solid fa-right-from-bracket" id="log_out"></i></a>

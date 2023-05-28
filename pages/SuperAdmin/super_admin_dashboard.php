@@ -1,5 +1,4 @@
 <?php
-
 include('../../utils/_super_admin_.class.php');
 
 ?>
@@ -27,9 +26,9 @@ include('../../utils/_super_admin_.class.php');
     include "../../includes/super_admin_SideNavbar.php";
     ?>
     <section class="home-section">
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-        </div>
+        <?php
+        include "../../includes/nav.php";
+        ?>
         <div class="container bg-white rounded-lg shadow-lg mt-3">
             <div class="row p-3 rounded-lg shadow-lg d-flex justify-content-sm-center " style="transition: all all 0.5s ease; border-right:6px solid #11101D; ">
                 <div class="col-md-3 col-sm-12  col-sm-12 rounded-lg m-3 bg-white shadow-lg" style="border-right:6px solid #11101D ">

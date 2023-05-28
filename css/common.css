@@ -26,6 +26,7 @@ body{
     padding: 0;
     box-sizing: border-box;
     font-family: var(--Poppins) ;
+    overflow-x: hidden;
 }
 
 .horizontal_navbar {
@@ -39,9 +40,9 @@ body{
     border-left: 1px solid wheat;
     color: white;
     display: flex;
-    align-items: center;
     padding-left: 30px;
     justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -51,4 +52,12 @@ body{
     font-size: 24px;
     font-weight: 400;
     color: white;
+}
+
+.user_name {
+    margin-right: 30px;
+}
+
+table {
+    overflow-x: scroll;
 }

@@ -1,3 +1,7 @@
 .latest_leave {
     overflow: scroll;
 }
+
+.dash_table {
+    width: 95% !important;
+}

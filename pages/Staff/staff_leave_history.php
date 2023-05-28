@@ -19,9 +19,9 @@
     $conn = sql_conn();
     ?>
     <section class="home-section">
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-        </div>
+        <?php
+        include "../../includes/nav.php";
+        ?>
         <div class="manageUserMain">
             <h1 class="heading">Manage Employees</h1>
             <div class="User">

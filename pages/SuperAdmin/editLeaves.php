@@ -32,10 +32,9 @@ include('../../utils/manage_leave.php');
     include "../../includes/super_admin_SideNavbar.php";
     ?>
     <section class="home-section">
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-        </div>
-
+        <?php
+        include "../../includes/nav.php";
+        ?>
         <div class=" mt-2 d-flex justify-content-center ">
 
       <form action="../../utils/updateLeaves.php?leaveId=<?php echo $leaveId?>&userId=<?php echo 

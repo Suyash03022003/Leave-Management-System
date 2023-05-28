@@ -31,11 +31,9 @@ include('../../utils/edit_masterData_.php');
     include "../../includes/super_admin_SideNavbar.php";
     ?>
     <section class="home-section">
-
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-        </div>
-
+        <?php
+        include "../../includes/nav.php";
+        ?>
         <div class="container mt-2 d-flex justify-content-center ">
 
       <form action="../../utils/updateMasterData.php?leaveId=<?php echo $leaveId?>" method="POST" class="bg-white shadow pl-5 pr-5 pb-5 pt-2 mt-5 rounded-lg " style="border-right:6px solid #11101D;">
