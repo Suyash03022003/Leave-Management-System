@@ -144,6 +144,7 @@
                 $tableRows  = $tableRows.
                 " <tr>
                     <form method='post' action='../pages/SuperAdmin/editLeaves.php' >
+                    
                         <td> ". $row['leaveType'] . "</td>
                         <td> ". $row['balance'] . "</td>
                         <td> ". date( 'd-m-Y H:i' , strtotime( $row['date'] ) )  . "</td>

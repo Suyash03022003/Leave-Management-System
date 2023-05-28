@@ -18,21 +18,31 @@ if (isset($_POST['submit'])) {
     $query = "INSERT INTO user(email, fullName, deptId, joiningDate, userType, position) VALUES ('$email','$fullname','$deptId','$joining','$staff','$user')";
     $result = mysqli_query($conn, $query);
 
-    
     //If successfull
     if( $result )  {
 
     //Get the userId
-    $query = "SELECT userId from user where email='$email'";
+    $query = "SELECT * from user where email='$email'";
     $result = mysqli_query($conn, $query);
 
+    if( !$result ){
+        echo "alert('ERROR OCCURED )";
+        exit(0);
+    }
+
+    
     $row = mysqli_fetch_assoc($result);
     $userId = $row['userId'];
-    
+
     //get masterdata details
     $query = "SELECT * from masterdata";
     $result = mysqli_query($conn, $query);
     
+    if( !$result ){
+        echo "alert('ERROR OCCURED )";
+        exit(0);
+    }
+
     //Iterate masterdata to create 0 balance instance in leavebalance table
     foreach ($result as $cols) {
 
@@ -62,7 +72,6 @@ if (isset($_POST['submit'])) {
             $result = mysqli_query($conn, $query);
 
 
-
             }
 
         }
@@ -71,16 +80,17 @@ if (isset($_POST['submit'])) {
     
     if ($result) {
         header("location: ../pages/SuperAdmin/manageEmployees.php");
-        exit(0);
+        // exit(0);
     } else {
         echo "User Not Added!";
-        exit(0);
+        // exit(0);
     }
 
 }
 
 else{
-    echo " User Not Added ";
+    echo " alert(User Not Added) ";
+    exit(0);
 }
 
 }
