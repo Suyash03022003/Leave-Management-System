@@ -17,7 +17,11 @@ if (isset($_POST['submit'])) {
     //Add Data to user table
     $query = "INSERT INTO user(email, fullName, deptId, joiningDate, userType, position) VALUES ('$email','$fullname','$deptId','$joining','$staff','$user')";
     $result = mysqli_query($conn, $query);
+
     
+    //If successfull
+    if( $result )  {
+
     //Get the userId
     $query = "SELECT userId from user where email='$email'";
     $result = mysqli_query($conn, $query);
@@ -34,12 +38,35 @@ if (isset($_POST['submit'])) {
 
         $leaveId = $cols['leaveId'];
         $leaveType = $cols['leaveType'];
-        $date = date( 'Y-m-d H:i' );
+        $date = date( 'Y-m-d H:i:s' );
 
-        //insert into leavebalance
-        $query = "INSERT INTO leavebalance(userId , leaveId , leaveType , balance , lastUpdatedOn ) VALUES ( $userId , $leaveId ,'$leaveType',0, '$date' )";
+        //insert into leavetransaction
+        $query = "INSERT INTO leavetransaction( transactionId, userId , leaveId , date , reason , status , balance ) VALUES ( NULL ,  $userId , $leaveId ,'$date', 'New User ( 0 Balance )' , 'PENDING' , 0 )";
         $result = mysqli_query($conn, $query);
-        
+
+        if( $result ){
+
+            //get transactionId
+            $query = "SELECT * from leavetransaction where userId='$userId' and leaveId='$leaveId' ORDER BY date DESC ";
+            $result = mysqli_fetch_assoc( mysqli_query($conn, $query) );
+            $transactionId = $result['transactionId'];
+
+            //insert into leavebalance
+            $query = "INSERT INTO leavebalance(userId , leaveId , leaveType , balance , lastTransaction ) VALUES ( $userId , $leaveId ,'$leaveType', 0 , $transactionId )";
+            $result = mysqli_query($conn, $query);
+
+            if( $result ){
+
+            //update leavetransaction
+            $query = "UPDATE leavetransaction SET status= 'SUCCESSFULL' where transactionId = $transactionId ";
+            $result = mysqli_query($conn, $query);
+
+
+
+            }
+
+        }
+            
     }
     
     if ($result) {
@@ -49,6 +76,14 @@ if (isset($_POST['submit'])) {
         echo "User Not Added!";
         exit(0);
     }
+
 }
+
+else{
+    echo " User Not Added ";
+}
+
+}
+
 
 ?>

@@ -71,7 +71,6 @@ include('../../utils/ManageUserUtils.php');
                     <option value="Not Selected" selected disabled hidden>Select Staff</option>
                     <option value="TEACHING_STAFF">TEACHING_STAFF</option>
                     <option value="NON_TEACHING_STAFF">NON_TEACHING_STAFF</option>
-                    <option value="DEACTIVATED">DEACTIVATED</option>
                 </select>
             </div>
            

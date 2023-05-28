@@ -89,9 +89,11 @@
         public static function getUserLeaveData( $email ){
 
             $conn = sql_conn(); //get connection from database
-            $sql = "SELECT * FROM " .DB. ".leavebalance inner join user on user.userId = leavebalance.userId where email = '".$email. "'";
+            $sql = "SELECT * FROM " .DB. ".leavebalance inner join leavetransaction on leavetransaction.transactionId = leavebalance.lastTransaction inner join user on user.userId = leavebalance.userId and leavetransaction.leaveId = leavebalance.leaveId where email = '".$email. "'";
 
             $result =  mysqli_query( $conn , $sql);
+
+
             return $result;
 
         }
@@ -144,7 +146,8 @@
                     <form method='post' action='../pages/SuperAdmin/editLeaves.php' >
                         <td> ". $row['leaveType'] . "</td>
                         <td> ". $row['balance'] . "</td>
-                        <td> ". date( 'd-m-Y H:i' , strtotime( $row['lastUpdatedOn'] ) )  . "</td>
+                        <td> ". date( 'd-m-Y H:i' , strtotime( $row['date'] ) )  . "</td>
+                        <td> ". $row['reason'] . "</td>
                         <td><a href='../../pages/SuperAdmin/editLeaves.php?userId=" . $row['userId'] . "&leaveId=" . $row['leaveId'] . "' name='manage' class='btn' > Manage </a></td>
                     </form>
                 </tr>";                
@@ -158,6 +161,7 @@
             <th>LEAVE TYPE</th>
             <th>BALANCE</th>
             <th>LAST UPDATED ON</th>
+            <th>REASON</th>
             <th></th>
             </tr>
             </thead>
