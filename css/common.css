@@ -39,6 +39,7 @@ body{
     border-left: 1px solid wheat;
     color: white;
     display: flex;
+    align-items: center;
     padding-left: 30px;
     justify-content: space-between;
     align-items: center;

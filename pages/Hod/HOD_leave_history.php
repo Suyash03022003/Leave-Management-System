@@ -36,7 +36,7 @@
                     $email = $_SESSION['email'];
                     $sql1 = "SELECT * FROM leavedetails where userId = (SELECT deptHod FROM department INNER JOIN user ON department.deptHod = user.userId where email = '$email') ";
 
-                    $res = mysqli_query($conn, $sql1) or die("result failed in table");
+                    $res = mysqli_query($conn, $sql1);
 
                     if (mysqli_num_rows($res) > 0) { ?>
                         <thead>

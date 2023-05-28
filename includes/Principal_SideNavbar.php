@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+<?php session_start();?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href="../css/Staff_HomePage.css?v=<?php echo time(); ?>">
    </head>
 <body>
-  <div class="sidebar">
+  <div class="sidebar open">
     <div class="logo-details">
     <img class="bitlogo" src="../../assets/bitlogo_transparent.png" alt="profileImg">
         <div class="logo_name">LMS</div>

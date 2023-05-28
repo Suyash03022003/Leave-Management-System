@@ -1,9 +1,15 @@
 /* for horizontal_navbar Navvar */
-
+body {
+    overflow-x: hidden;
+}
 .horizontal_navbar a i {
     color: white;
     font-size: 25px;
     margin-right: 25px;
+}
+
+.dash_table {
+    width: 95% !important;
 }
 
 /*  */

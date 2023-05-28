@@ -16,9 +16,9 @@
 
 <body>
     <?php
+    include('../../includes/Authentication_verified.php');
     include "../../includes/Staff_SideNavbar.php";
     include('../../includes/_db_conn.php');
-    include('../../includes/Authentication_verified.php');
 
     $conn = sql_conn();
 
@@ -30,7 +30,7 @@
         include "../../includes/nav.php";
         ?>
         <div class="text container">Dashboard</div>
-        <div class="container bg-white rounded-lg shadow-lg mt-3 ">
+        <div class="container bg-white rounded-lg shadow-lg mt-3 dash_table">
             <div class="row p-3 rounded-lg shadow-lg d-flex justify-content-sm-center  " style="transition: all all 0.5s ease; border-right:6px solid #11101D">
                 <?php $sql1 = "SELECT * FROM leavebalance INNER JOIN user ON user.userId = leavebalance.userId where email = '$email'"; 
                 $res = mysqli_query($conn, $sql1) or die("result failed in table");
@@ -57,7 +57,7 @@
         </div>
 
         <!-- Table  for latest Leave Reqquest -->
-        <div class="content mt-3 row rounded-lg">
+        <div class="content mt-3 rounded-lg dash_table" style="margin: auto;">
             <div class="container clg-12  bg-white rounded-lg  " style="transition: all all 0.5s ease; border-right:6px solid #11101D">
                 <div class="page-title p-4">
                     <h3> Latest Leave Application

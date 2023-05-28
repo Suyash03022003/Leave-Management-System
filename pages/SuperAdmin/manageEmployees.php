@@ -24,7 +24,7 @@ include('../../utils/ManageUserUtils.php');
     include "../../includes/super_admin_SideNavbar.php";
     ?>
 
-    <section class="emp-home-section">
+    <section class="home-section">
         <?php
         include "../../includes/nav.php";
         ?>
