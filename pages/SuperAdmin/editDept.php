@@ -40,7 +40,7 @@ include('../../utils/EditDepartmentUtils.php');
           </div>
           <div class="form-group col-md-12">
             <!-- <label for="inputPassword4">Password</label> -->
-            <input type="email"  class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="Department" name="deptHodEmail" value="<?php echo $deptHodEmail?>">
+            <input type="email"  class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="HOD email" name="deptHodEmail" value="<?php echo $deptHodEmail?>">
           </div>
 
         </div>

@@ -14,6 +14,25 @@ if (isset($_POST['submit'])) {
     $staff = $_POST['staff'];
     $user = $_POST['user'];
 
+
+    //Add Data to user table
+    $query = "SELECT * from department where deptId='$deptId'";
+    $result = mysqli_fetch_assoc( mysqli_query($conn, $query) );
+
+    echo "<script> alert( " . $result['deptHod'] . " ) </script>";
+    
+
+    //If there is already hod for that specific department
+    if( $result['deptHod'] != 0  && $user == 'HOD' ){
+
+            echo "<script>
+            alert('CANNOT ASSIGN MORE THAN 1 HOD ')
+            window.location.href = '../pages/SuperAdmin/manageEmployees.php'
+            </script>";
+            exit(0);
+
+    }
+
     //Add Data to user table
     $query = "INSERT INTO user(email, fullName, deptId, joiningDate, userType, position) VALUES ('$email','$fullname','$deptId','$joining','$staff','$user')";
     $result = mysqli_query($conn, $query);
