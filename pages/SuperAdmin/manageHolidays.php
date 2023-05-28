@@ -59,7 +59,7 @@ $conn = sql_conn()
 
                             echo "<tr>";
                             echo "<td>" . $cols['holidayName'] . "</td>";
-                            echo "<td>" . $cols['date'] . "</td>";
+                            echo "<td>" . date( 'd-m-Y' , strtotime( $cols['date'] ) ) . "</td>";
                             echo "<td><a href='../../utils/deleteHoliday.php?date=$cols[date]' name='delete'><i class='fa-solid fa-trash delete'></i></a></td>";
                             echo "</tr>";
 

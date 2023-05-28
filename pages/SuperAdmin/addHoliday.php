@@ -34,7 +34,7 @@
           </div>
           <div class="form-group col-md-12">
             <!-- <label for="inputPassword4">Password</label> -->
-            <input type="date"  class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="Date" name="date">
+            <input type="date" min=<?php echo date( 'Y-m-d' ) ?> class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="Date" name="date">
           </div>
 
         </div>
