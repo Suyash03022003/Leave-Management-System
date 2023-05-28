@@ -16,9 +16,9 @@
 
 <body>
     <?php
+    include('../../includes/Authentication_verified.php');
     include "../../includes/Staff_SideNavbar.php";
     include('../../includes/_db_conn.php');
-    include('../../includes/Authentication_verified.php');
 
     $conn = sql_conn();
 
