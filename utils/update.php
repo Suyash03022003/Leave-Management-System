@@ -10,9 +10,21 @@ if (isset($_POST['submit'])) {
     $deptid = $_POST['deptid'];
     $joining = $_POST['joining'];
     $staff = $_POST['staff'];
+
     $status = $_POST['status'];
+
     $position = $_POST['position'];
-    $query = "UPDATE user SET email='$emailval',fullname='$fullname',deptId='$deptid',joiningDate='$joining',userType='$staff',position='$position',status='$status' WHERE email = '$email'";
+
+    if( $status == 'DEACTIVATED'  ){
+
+        $date = date(' Y-m-d ');
+        $query = "UPDATE user SET email='$emailval',fullname='$fullname',deptId='$deptid',joiningDate='$joining',userType='$staff',position='$position',status='$status', deactivationDate='$date' WHERE email = '$email'";
+
+    }
+    else{
+        $query = "UPDATE user SET email='$emailval',fullname='$fullname',deptId='$deptid',joiningDate='$joining',userType='$staff',position='$position',status='$status', deactivationDate=NULL WHERE email = '$email'";
+    }
+
     $result = mysqli_query($conn, $query);
     
     if ($result) {

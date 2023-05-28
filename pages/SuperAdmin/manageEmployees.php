@@ -38,7 +38,6 @@ include('../../utils/ManageUserUtils.php');
                             <th>USER TYPE</th>
                             <th>POSITION</th>
                             <th>STATUS</th>
-                            <th>JOINING DATE</th>
                             <th>EDIT</th>
                             <th>DEACTIVATE</th>
                         </tr>
@@ -57,7 +56,6 @@ include('../../utils/ManageUserUtils.php');
                             echo "<td>" . $cols['userType'] . "</td>";
                             echo "<td>" . $cols['position'] . "</td>";
                             echo "<td>" . $cols['status'] . "</td>";
-                            echo "<td>" . date('d-m-Y', strtotime($cols['joiningDate'])) . "</td>";
                             echo "<td><a href='../../pages/SuperAdmin/edit.php?email=$cols[email]' name='edit'><i class='fa-solid fa-pen-to-square edit'></i></a></td>";
                             echo "<td><a href='../../utils/delete.php?email=$cols[email]' name='delete'><i class='fa-solid fa-trash delete'></i></a></td>";
                             echo "</tr>";
