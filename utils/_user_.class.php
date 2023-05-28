@@ -24,6 +24,7 @@
         public $userType  ;
         public $position  ;
         public $email  ;
+        public $id  ;
 
         /*
         @function "__contruct"
@@ -50,6 +51,7 @@
                 $_SESSION['userType'] = $this->userType;
                 $_SESSION['position'] = $this->position;
                 $_SESSION['email'] = $this->email;
+                $_SESSION['id'] = $this->id;
 
 
             }
@@ -78,6 +80,7 @@
                  $this->deptId = $rows['deptId'];
                  $this->userType = $rows['userType'];
                  $this->position = $rows['position'];
+                 $this->id = $rows['userId'];
 
                 return true;
                 

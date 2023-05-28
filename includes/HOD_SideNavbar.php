@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/Staff_HomePage.css?v=<?php echo time(); ?>">
    </head>
 <body>
-  <div class="sidebar">
+  <div class="sidebar open">
     <div class="logo-details">
     <img class="bitlogo" src="../../assets/bitlogo_transparent.png" alt="profileImg">
         <div class="logo_name">LMS</div>
@@ -66,8 +66,8 @@
            
           
            <div class="name_job">
-             <div class="name">Hod</div>
-             <div class="job">ID: 123456</div>
+             <div class="name"><?php echo $_SESSION['fullname']?></div>
+             <div class="job">ID: <?php echo $_SESSION['id']?></div>
            </div>
          </div>
          <a href="../logout.php" class="logouthyperlink"><i class="fa-solid fa-right-from-bracket" id="log_out"></i></a>

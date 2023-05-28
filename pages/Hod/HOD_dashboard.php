@@ -33,7 +33,7 @@
         include "../../includes/nav.php";
         ?>
         <div class="text container">Dashboard</div>
-        <div class="container bg-white rounded-lg shadow-lg mt-3 ">
+        <div class="container bg-white rounded-lg shadow-lg mt-3 dash_table">
             <div class="row p-3 rounded-lg shadow-lg d-flex justify-content-sm-center  " style="transition: all all 0.5s ease; border-right:6px solid #11101D">
                 <?php $sql1 = "SELECT * FROM masterdata";
                 $res = mysqli_query($conn, $sql1) or die("result failed in table");
@@ -88,8 +88,8 @@
         </div>
 
         <!-- Table  for latest Leave Reqquest -->
-        <div class="content mt-3 row rounded-lg">
-            <div class="container clg-12  bg-white rounded-lg  " style="transition: all all 0.5s ease; border-right:6px solid #11101D">
+        <div class="content mt-3 rounded-lg">
+            <div class="container clg-12  bg-white rounded-lg dash_table" style="transition: all all 0.5s ease; border-right:6px solid #11101D">
                 <div class="page-title p-4">
                     <h3>My Leave History
                         <a href="roles.html" class="btn btn-sm btn-outline-primary float-end"><i class="fas fa-user-shield"></i> Roles</a>

@@ -74,8 +74,8 @@
           <!-- <img src="assets/ganesh.jpg" alt="profileImg"> -->
           <img src="../../assets/ganesh.jpg" alt="profileImg">
           <div class="name_job">
-            <div class="name">Admin</div>
-            <div class="job">ID: 123456</div>
+            <div class="name"><?php echo $_SESSION['fullname']?></div>
+            <div class="job">ID: <?php echo $_SESSION['id']?></div>
           </div>
         </div>
         <a href="../logout.php" class="logouthyperlink"><i class="fa-solid fa-right-from-bracket" id="log_out"></i></a>
