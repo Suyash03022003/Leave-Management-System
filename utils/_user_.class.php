@@ -24,6 +24,7 @@
         public $userType  ;
         public $position  ;
         public $email  ;
+        public $id  ;
 
         /*
         @function "__contruct"
@@ -50,6 +51,7 @@
                 $_SESSION['userType'] = $this->userType;
                 $_SESSION['position'] = $this->position;
                 $_SESSION['email'] = $this->email;
+                $_SESSION['id'] = $this->id;
 
 
             }
@@ -78,6 +80,7 @@
                  $this->deptId = $rows['deptId'];
                  $this->userType = $rows['userType'];
                  $this->position = $rows['position'];
+                 $this->id = $rows['userId'];
 
                 return true;
                 
@@ -89,9 +92,11 @@
         public static function getUserLeaveData( $email ){
 
             $conn = sql_conn(); //get connection from database
-            $sql = "SELECT * FROM " .DB. ".leavebalance inner join user on user.userId = leavebalance.userId where email = '".$email. "'";
+            $sql = "SELECT * FROM " .DB. ".leavebalance inner join leavetransaction on leavetransaction.transactionId = leavebalance.lastTransaction inner join user on user.userId = leavebalance.userId and leavetransaction.leaveId = leavebalance.leaveId where email = '".$email. "'";
 
             $result =  mysqli_query( $conn , $sql);
+
+
             return $result;
 
         }
@@ -142,12 +147,11 @@
                 $tableRows  = $tableRows.
                 " <tr>
                     <form method='post' action='../pages/SuperAdmin/editLeaves.php' >
+                    
                         <td> ". $row['leaveType'] . "</td>
                         <td> ". $row['balance'] . "</td>
-                        <td> ". $row['lastUpdatedOn'] . "</td>
-                        <td> ". $row['status'] . "</td>
-                        <td> " . date( 'd-m-Y' , strtotime($row['joiningDate']) ) ."</td>
-                        <td> " . date( 'd-m-Y' , strtotime($row['deactivationDate']) ) . "</td>
+                        <td> ". date( 'd-m-Y H:i' , strtotime( $row['date'] ) )  . "</td>
+                        <td> ". $row['reason'] . "</td>
                         <td><a href='../../pages/SuperAdmin/editLeaves.php?userId=" . $row['userId'] . "&leaveId=" . $row['leaveId'] . "' name='manage' class='btn' > Manage </a></td>
                     </form>
                 </tr>";                
@@ -161,9 +165,7 @@
             <th>LEAVE TYPE</th>
             <th>BALANCE</th>
             <th>LAST UPDATED ON</th>
-            <th>STATUS</th>
-            <th>JOINING DATE</th>
-            <th>DEACTIVATION DATE</th>
+            <th>REASON</th>
             <th></th>
             </tr>
             </thead>

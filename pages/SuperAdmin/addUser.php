@@ -25,23 +25,25 @@ include('../../utils/ManageUserUtils.php');
     include "../../includes/super_admin_SideNavbar.php";
     ?>
     <section class="home-section">
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-        </div>
-
+        <?php
+        include "../../includes/nav.php";
+        ?>
  <!-- FORM FOR ADD STAFF -->
 
  <div  class="container mt-2 d-flex justify-content-center ">
+
         <form  class="bg-white shadow pl-5 pr-5 pb-3 pt-2 mt-5 rounded-lg" action="../../utils/insert.php" method="POST">
+
         <h4 class="pb-3 pt-2" style="color: #11101D;">Add User</h4>
+
         <div class="form-row">
-          <!-- <div class="form-group col-md-2">
-            <input type="text" class="form-control  border-top-0 border-right-0 border-left-0 border border-dark bg-white" id="inputEmail4" placeholder="User Id"  name="userId">
-          </div> -->
+
           <div class="form-group col-md-5">
             <input type="email"  class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder=" Email" name="email">
           </div>
+
           <div class="form-group col-md-5">
+
                 <select name="user" class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " >
                     <option value="Not Selected" selected disabled hidden>Select User</option>
                     <option value="PRINCIPAL">PRINCIPAL</option>
@@ -49,6 +51,7 @@ include('../../utils/ManageUserUtils.php');
                     <option value="FACULTY">FACULTY</option>
                     <option value="ADMIN">ADMIN</option>
                 </select>
+                
             </div>
 
           <div class="form-group col-md-6">
@@ -71,7 +74,6 @@ include('../../utils/ManageUserUtils.php');
                     <option value="Not Selected" selected disabled hidden>Select Staff</option>
                     <option value="TEACHING_STAFF">TEACHING_STAFF</option>
                     <option value="NON_TEACHING_STAFF">NON_TEACHING_STAFF</option>
-                    <option value="DEACTIVATED">DEACTIVATED</option>
                 </select>
             </div>
            

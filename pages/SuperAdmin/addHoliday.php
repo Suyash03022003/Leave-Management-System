@@ -19,10 +19,9 @@
     include "../../includes/super_admin_SideNavbar.php";
     ?>
     <section class="home-section">
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder"> Bajaj Institute Technology Wardha</h1>
-        </div>
-
+        <?php
+        include "../../includes/nav.php";
+        ?>
         <div class=" mt-2 d-flex justify-content-center ">
       <form action="../../utils/insertHoliday.php" method="POST" class="bg-white shadow pl-5 pr-5 pb-5 pt-2 mt-5 rounded-lg " style="border-right:6px solid #11101D;">
         <h4 class="pb-3 pt-2" style="color: #11101D;">Add New Holiday</h4>
@@ -34,7 +33,7 @@
           </div>
           <div class="form-group col-md-12">
             <!-- <label for="inputPassword4">Password</label> -->
-            <input type="date"  class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="Date" name="date">
+            <input type="date" min=<?php echo date( 'Y-m-d' ) ?> class="form-control bg-white border-top-0 border-right-0 border-left-0 border border-dark " id="inputEmail4" placeholder="Date" name="date">
           </div>
 
         </div>

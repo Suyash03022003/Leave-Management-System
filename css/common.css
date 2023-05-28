@@ -42,6 +42,7 @@ body{
     align-items: center;
     padding-left: 30px;
     justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -51,4 +52,12 @@ body{
     font-size: 24px;
     font-weight: 400;
     color: white;
+}
+
+.user_name {
+    margin-right: 30px;
+}
+
+table {
+    overflow-x: scroll;
 }

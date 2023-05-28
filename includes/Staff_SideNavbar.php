@@ -41,17 +41,9 @@
      <li>
        <a href="./staff_leave_history.php">
        <i class="fa-solid fa-building-user"></i>
-         <span class="links_name">Leave Listory</span>
+         <span class="links_name">Leave History</span>
        </a>
-       <span class="tooltip">Leave Listory</span>
-     </li>
-     
-     <li>
-       <a href="#">
-       <i class="fas fa-user-cog"></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Leave History</span>
      </li>
      <li class="profile">
          <div class="profile-details">
@@ -60,8 +52,8 @@
            
           
            <div class="name_job">
-             <div class="name">Staff</div>
-             <div class="job">ID: 123456</div>
+             <div class="name"><?php echo $_SESSION['fullname']?></div>
+             <div class="job">ID: <?php echo $_SESSION['id']?></div>
            </div>
          </div>
          <a href="../logout.php" class="logouthyperlink"><i class="fa-solid fa-right-from-bracket" id="log_out"></i></a>

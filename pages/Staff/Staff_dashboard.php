@@ -26,9 +26,9 @@
 
     ?>
     <section class="home-section">
-        <div class="horizontal_navbar">
-            <h1 class="Heading_Heder ml-3"> Bajaj Institute Technology Wardha</h1>
-        </div>
+        <?php
+        include "../../includes/nav.php";
+        ?>
         <div class="text container">Dashboard</div>
         <div class="container bg-white rounded-lg shadow-lg mt-3 ">
             <div class="row p-3 rounded-lg shadow-lg d-flex justify-content-sm-center  " style="transition: all all 0.5s ease; border-right:6px solid #11101D">
