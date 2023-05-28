@@ -25,15 +25,17 @@ include "../../includes/Authentication_verified.php"
   include('../../includes/_db_conn.php');
   $conn = sql_conn();
   ?>
-  <section class="home-section">
 
+  <section class="home-section">
 
 
   <!-- //NAvbar -->
     <?php
     include "../../includes/nav.php";
     ?>
+
     <div class="container mt-2 d-flex justify-content-center ">
+
    <?php     
 
   $email = $_SESSION['email'];
@@ -49,7 +51,9 @@ include "../../includes/Authentication_verified.php"
   
  <?php } ?>
  
-      <form action="../../utils/insertLeave.php" method="POST" class="bg-white shadow pl-5 pr-5 pb-5 pt-2 mt-5 rounded-lg " style="border-right:6px solid #11101D;">
+      <form action="../../utils/insertLeave.php" method="POST" class="bg-white shadow pl-5 pr-5 
+      pb-5 pt-2 mt-5 rounded-lg " style="border-right:6px solid #11101D;">
+
 
         <h4 class="pb-3 pt-2" style="color: #11101D;">Apply for Leave</h4>
 
@@ -93,6 +97,8 @@ include "../../includes/Authentication_verified.php"
 
           <div class="form-group col-md-6">
 
+            <!-- Leave type -->
+
             <select required id="leaveType" name="leaveType" class="form-control border-top-0 border-right-0 border-left-0 border border-dark" data-toggle="tooltip" data-placement="top" title="Select Leave Type" name="leaveType">
 
               <option value="" disable>Choose Leave Type</option>
@@ -118,7 +124,7 @@ include "../../includes/Authentication_verified.php"
           <div class="form-group col-md-6">
             
           <!-- //Get current date -->
-            <input type="text" readonly name="date" class="form-control bg-white border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4" placeholder="Today Date" value="<?php echo date("Y/m/d") ?>">
+            <input type="text" readonly name="date" class="form-control bg-white border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4" placeholder="Today Date" value="<?php echo date("Y-m-d H:i") ?>">
 
           </div>
 
@@ -176,28 +182,14 @@ include "../../includes/Authentication_verified.php"
           <div class="form-group col-md-2">
 
           <!-- //total days -->
-            <input type="number" name="totalDays" placeholder="Total Days" data-toggle="tooltip" data-placement="top" title="Total Leave Days" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="totalDaysId">
+            <input type="decimal" name="totalDays" placeholder="Total Days" data-toggle="tooltip" data-placement="top" title="Total Leave Days" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="totalDaysId">
 
           </div>
         </div>
-     
-        <?php 
-        $queryholi = "SELECT date FROM holidays";
-        $result = mysqli_query($conn, $queryholi) or die("result failed in table");
-        
-        // Store the fetched data in an array
-        $dataArray = array();
-        while ($row = $result->fetch_assoc()) {
-          $dataArray[] = $row;
-        } 
-        $jsonArray = json_encode($dataArray);
-        
-        ?>
-
 
         <script>
 
-        //Declarations
+        // Declarations
 
         var endDate;
         var startDate
@@ -362,102 +354,200 @@ include "../../includes/Authentication_verified.php"
 
             }
 
+            }
           }
-             }
-
-
 
         </script>
+
+
+          <!-- reason -->
+
+            <div class="form-group col-md-12  p-0">
+
+              <input type="text" name="reason"  placeholder="Reason" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="reason">
+
+            </div>
+
         <!-- Lecture Adjustment Section -->
 
-        <div class="form-row" id="dynamicadd">
-          <div class="form-group col-md-3">
-            <select id="inputState" name="adjustedWith" class="form-control border-top-0 border-right-0 border-left-0 border border-dark">
-              <option selected disable>Lecture Adjust With.. </option>
-              <?php $sql1 = "SELECT * FROM user";
-              $res = mysqli_query($conn, $sql1) or die("result failed in table");
-              while ($row = mysqli_fetch_assoc($res)) { ?>
-                <option><?php echo $row['email'] ?></option>
+        <div id="dynamicadd-lec" >
+        
+          <!-- //To get this value in php using $_POST -->
+          <input type="hidden" id="totalLec" name="totalLec" value=1 />
 
-              <?php } ?>
-            </select>
+          <div class="form-row" id='lecContainer' >
 
+            <div class="form-group col-md-3">
+
+            <!-- //First Lecture Adjustment -->
+              <select id="lec-adjustedWith-$0" name="lec-adjustedWith-$0" class="form-control border-top-0 border-right-0 border-left-0 border border-dark">
+
+                <option selected disable>Lecture Adjust With.. </option>
+
+                <?php $sql1 = "SELECT * FROM user ";
+
+                $res = mysqli_query($conn, $sql1) or die("result failed in table");
+
+                while ($row = mysqli_fetch_assoc($res)) { ?>
+
+                  <option value=<?php echo $row['email'] ?> ><?php echo $row['email'] ?></option>
+
+                <?php } ?>
+
+              </select>
+
+            </div>
+
+            <!-- date -->
+            <div class="form-group col-md-2">
+              <input type="text" name="lec-date-$0" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Lecture Date" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="lec-date-$0">
+            </div>
+
+            <!-- start Time -->
+            <div class="form-group col-md-2">
+              <input type="text" name="lec-startTime-$0" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="start Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="lec-startTime-$0">
+            </div>
+
+            <!-- start Time -->
+            <div class="form-group col-md-2">
+              <input type="time " name="lec-endTime-$0" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="End Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="lec-endTime-$0">
+            </div>
+
+            <!-- Semester -->
+            <div class="form-group col-md-1">
+              <input type="text" name="lec-sem-$0" placeholder="Sem" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="lec-sem-$0" >
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group col-md-1">
+              <input type="text" name="lec-sub-$0" placeholder="Subject" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="lec-sub-$0">
+            </div>
+
+            <div class="form-group col-sm-12 col-md-1">
+              <button class=" btn" id="lec-add" name="btn[]" style="background-color: #11101D; color:white">Add</button>
+
+            </div>
           </div>
 
-          <div class="form-group col-md-2">
-            <input type="text" name="lecDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Lecture Date" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
-          </div>
-          <div class="form-group col-md-2">
-            <input type="text" name="lecStartTime" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="start Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
-          </div>
-          <div class="form-group col-md-2">
-            <input type="time " name="lecEndTime" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="End Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
-          </div>
-          <div class="form-group col-md-1">
-            <input type="text" name="sem" placeholder="Sem" class="form-control border-top-0 border-right-0 border-left-0  border border-dark">
-          </div>
-          <div class="form-group col-md-1">
-            <input type="text" name="subject" placeholder="Subject" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
-          </div>
-          <div class="form-group col-sm-12 col-md-1">
-            <button class=" btn" id="add" name="btn[]" style="background-color: #11101D; color:white">Add</button>
-          </div>
         </div>
 
         <!-- Task Adjustment -->
 
-        <div class="form-row" id="dynamicadd1">
-          <div class="form-group col-md-3">
-            <select id="inputState" name="adjustedWith1" class="form-control border-top-0 border-right-0 border-left-0 border border-dark">
-              <option selected disable>Task Adjust With.. </option>
-              <?php $sql1 = "SELECT * FROM user";
-              $res = mysqli_query($conn, $sql1) or die("result failed in table");
-              while ($row = mysqli_fetch_assoc($res)) { ?>
-                <option><?php echo $row['email'] ?></option>
+      <div id="dynamicadd-task" >
 
-              <?php } ?>
-            </select>
+        <!-- //To get this value in php using $_POST -->
+        <input type="hidden" id="totalTask" name="totalTask" value=1 />
 
-          </div>
-          <div class="form-group col-md-3">
-            <input type="text" name="sem" placeholder="Task Name" class="form-control border-top-0 border-right-0 border-left-0  border border-dark">
-          </div>
-          <div class="form-group col-md-2">
-            <input type="text" name="lecDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="From" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
-          </div>
-          <div class="form-group col-md-2">
-            <input type="text" name="lecDate" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="To" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4">
-          </div>
-          <div class="form-group col-sm-12 col-md-1">
-            <button class=" btn" id="add1" name="btn1[]" style="background-color: #11101D; color:white">Add</button>
-          </div>
+            <div class="form-row" id="taskContainer" >
+
+              <div class="form-group col-md-3">
+
+              <!-- //Adjusted With -->
+                <select id="task-adjustedWith-$0" name="task-adjustedWith-$0" class="form-control border-top-0 border-right-0 border-left-0 border border-dark">
+                  <option selected disable>Task Adjust With.. </option>
+                  <?php $sql1 = "SELECT * FROM user";
+                  $res = mysqli_query($conn, $sql1) or die("result failed in table");
+                  while ($row = mysqli_fetch_assoc($res)) { ?>
+                    <option><?php echo $row['email'] ?></option>
+
+                  <?php } ?>
+                </select>
+
+               </div>
+
+              <!-- task Name -->
+              <div class="form-group col-md-2">
+
+                <input type="text" name="task-name-$0" placeholder="Task Name" id='task-name-$0' class="form-control border-top-0 border-riight-0 border-left-0  border border-dark">
+
+              </div>
+              
+              <!-- Date -->
+              <div class="form-group col-md-2">
+
+                <input type="text" name="task-date-$0" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="task-date-$0">
+
+              </div>
+
+            <!-- start Time -->
+            <div class="form-group col-md-2">
+
+              <input type="time " name="task-startTime-$0" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Start Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="task-startTime-$0">
+
+            </div>
+
+            <!-- End Time -->
+            <div class="form-group col-md-2">
+
+              <input type="time " name="task-endTime-$0" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="End Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="task-endTime-$0">
+
+            </div>
+
+              <div class="form-group col-sm-12 col-md-1">
+
+                <button class=" btn" id="task-add" name="btn1[]" style="background-color: #11101D; color:white">Add</button>
+
+              </div>
+
+            </div>
+
         </div>
+
+
         <button type="submit" name="submit" class="btn mt-2" style="background-color: #11101D; color: white;">Apply</button>
-      </form>
-    </div>
+
+       </form>
+
+      </div>
+
   </section>
+
 </body>
+
 <script>
-  $(document).ready(function() {
-    var i = 1,
-      j = 1001;
-    $('#add').click(function(e) {
+
+  let lecCount = 1;
+  let taskCount = 1;
+
+  // lecture Adjustment
+
+  document.getElementById('lec-add').addEventListener('click' , (e)=>{
+
       alert('Want to Adjust Lecture');
       e.preventDefault();
-      i++;
-      $('#dynamicadd').append('<div class="form-row" id="form-row' + i + '"><div class="form-group col-md-3"> <select id="inputState" name="adjustedWith" class="form-control border-top-0 border-right-0 border-left-0 border border-dark"><option selected disable>Lecture Adjust With.. </option><?php $sql1 = "SELECT * FROM user";$res = mysqli_query($conn, $sql1) or die("result failed in table");while ($row = mysqli_fetch_assoc($res)) { ?> <option><?php echo $row['email'] ?></option><?php } ?></select></div><div class="form-group col-md-2"><input type="text" onfocus="(this.type="date")" onblur="(this.type="text")"   placeholder="Lecture Date" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4" > </div><div class="form-group col-md-2"><input type="text" onfocus="(this.type="date")" onblur="(this.type="text")"  placeholder="start Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4" ></div><div class="form-group col-md-2"><input type="text"  onfocus="(this.type="time")"onblur="(this.type="text")" placeholder="End Time" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4" ></div> <div class="form-group col-md-2"> <input type="text" name="lecture[]" placeholder="Subject" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4"></div><div class="form-group col-sm-12 col-md-1"><button type="button" id="' + i + '" class="btn btn-danger remove_row">-</button></div> </div>');
-    });
-    $('#add1').click(function(e) {
-      alert('Want to Adjust Lecture');
-      e.preventDefault();
-      j++;
-      $('#dynamicadd1').append('<div class="form-row" id="form-row' + j + '"><div class="form-group col-md-3"><select id="inputState" name="adjustedWith1" class="form-control border-top-0 border-right-0 border-left-0 border border-dark"><option selected disable>Task Adjust With.. </option><?php $sql1 = "SELECT * FROM user";$res = mysqli_query($conn, $sql1) or die("result failed in table");while ($row = mysqli_fetch_assoc($res)) { ?> <option><?php echo $row['email'] ?></option><?php } ?></select></div><div class="form-group col-md-3"><input type="text" name="sem" placeholder="Task Name" class="form-control border-top-0 border-right-0 border-left-0  border border-dark"></div><div class="form-group col-md-2"><input type="text" name="lecDate" onfocus="(this.type="date")" onblur="(this.type="text")" placeholder="From" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4"></div><div class="form-group col-md-2"><input type="text" name="lecDate" onfocus="(this.type="date")" onblur="(this.type="text")" placeholder="To" class="form-control border-top-0 border-right-0 border-left-0  border border-dark" id="inputPassword4"></div><div class="form-group col-sm-12 col-md-1"><button type="button" id="' + j + '" class="btn btn-danger remove_row">-</button></div> </div>');
-    });
-    $(document).on('click', '.remove_row', function() {
-      var row_id = $(this).attr("id");
-      $('#form-row' + row_id + '').remove();
-    });
-  });
+
+      let newLecRow = document.getElementById('lecContainer').outerHTML
+
+      let newElement = document.createElement('div')
+      newElement.className = "form-row"
+      newElement.innerHTML = newLecRow.replaceAll('$0' , "$"+lecCount+"")
+
+      document.getElementById('totalLec').value = lecCount;
+      lecCount++;
+
+      document.getElementById('dynamicadd-lec').appendChild( newElement );
+  })
+
+  // task Adjustment
+
+    document.getElementById('task-add').addEventListener('click' , (e)=>{
+
+        alert('Want to Adjust Task');
+        e.preventDefault();
+
+        let newTaskRow = document.getElementById('taskContainer').outerHTML
+
+        let newElement = document.createElement('div')
+        newElement.className = "form-row"
+        newElement.innerHTML = newTaskRow.replaceAll('$0' , "$"+taskCount+"" )
+
+        document.getElementById('totalTask').value = taskCount;
+        lecCount++;
+
+        document.getElementById('dynamicadd-task').appendChild( newElement );
+
+  })
+
 </script>
 
 </html>
