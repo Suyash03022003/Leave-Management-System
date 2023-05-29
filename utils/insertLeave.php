@@ -55,9 +55,9 @@ if (isset($_POST['submit'])) {
 
 
     //If NO lecture is adjusted
-    if( $total_lec_adjustments == 1 && $adjustedWith == "Lecture Adjust With.."  ){
+    if( $total_lec_adjustments == 0 && $adjustedWith == "Lecture Adjust With.."  ){
 
-      header("location: ../pages/Hod/leave_history.php");
+      header("location: ../pages/Hod/HOD_leave_history.php");
       exit(0);
 
     }
@@ -114,7 +114,69 @@ if (isset($_POST['submit'])) {
 
     //----------------------------- HAndling Task Adjustments-----------------------------------//
 
+    //handle task Adjustments
+    $total_task_adjustments =  $_POST['totalTask'];
+    $adjustedWith = $_POST['task-adjustedWith-$0'];
 
+    //If NO task is adjusted
+    if( $total_task_adjustments == 0 && $adjustedWith == "Task Adjust With.."  ){
+    
+      header("location: ../pages/Hod/HOD_leave_history.php");
+      exit(0);
+    
+    }
+
+
+    //Get Leave instance Id
+
+    $query = "SELECT * from leavedetails where dateTime = '$date' and userId = $userId";
+    $result = mysqli_fetch_assoc( mysqli_query($conn , $query) );
+
+    $leaveInsId = $result['leaveInsId'];
+
+    //For every task adjustment
+
+    for( $i = 0 ; $i <= $total_task_adjustments ; $i++ ){
+    
+    $adjustedWith = $_POST['task-adjustedWith-$'.$i.''];
+
+    //Get User id with adjustedwith faculty
+    $query = " SELECT * from user where email = '$adjustedWith' " ;
+    $result = mysqli_fetch_assoc( mysqli_query($conn , $query) );
+
+    $adjustedWith = $result['userId'];
+    $task = $_POST['task-name-$'.$i.''];
+    $adjustmentDate = $_POST['task-date-$'.$i.''];
+    $taskStartTime = $_POST['task-startTime-$'.$i.''];
+    $taskEndTime = $_POST['task-endTime-$'.$i.''];
+
+    //Query to add data into taskAdjutment
+
+    $query = " INSERT INTO taskadjustment( taskAdjustId , leaveInsId , applicantId , adjustedWith , status , date, startTime , endTime , task ) VALUES ( NULL , $leaveInsId ,  $userId , $adjustedWith , 'PENDING' , '$adjustmentDate' , '$taskStartTime' , '$taskEndTime' , '$task') ";
+
+    $result = mysqli_query($conn , $query);
+
+    // Errro Handling
+    if( !$result ){
+     
+      echo 
+      "<script>
+      
+          alert('Error occured during adjusting lectures ');
+          window.location.href = '../pages/Hod/HOD_apply_leave.php'
+
+      </script> ";
+      
+    }
+    else{
+
+      header("location: ../pages/Hod/HOD_leave_history.php");
+      exit(0);
+
+    }
+
+
+}
 
 }
 

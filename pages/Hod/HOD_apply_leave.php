@@ -373,7 +373,7 @@ include "../../includes/Authentication_verified.php"
         <div id="dynamicadd-lec" >
         
           <!-- //To get this value in php using $_POST -->
-          <input type="hidden" id="totalLec" name="totalLec" value=1 />
+          <input type="hidden" id="totalLec" name="totalLec" value=0 />
 
           <div class="form-row" id='lecContainer' >
 
@@ -436,7 +436,7 @@ include "../../includes/Authentication_verified.php"
       <div id="dynamicadd-task" >
 
         <!-- //To get this value in php using $_POST -->
-        <input type="hidden" id="totalTask" name="totalTask" value=1 />
+        <input type="hidden" id="totalTask" name="totalTask" value=0 />
 
             <div class="form-row" id="taskContainer" >
 
@@ -458,7 +458,7 @@ include "../../includes/Authentication_verified.php"
               <!-- task Name -->
               <div class="form-group col-md-2">
 
-                <input type="text" name="task-name-$0" placeholder="Task Name" id='task-name-$0' class="form-control border-top-0 border-riight-0 border-left-0  border border-dark">
+                <input type="text" name="task-name-$0" placeholder="Task Name" id='task-name-$0' class="form-control border-top-0 border-right-0 border-left-0  border border-dark">
 
               </div>
               
