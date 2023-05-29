@@ -24,7 +24,7 @@ include('../../utils/ManageUserUtils.php');
     include "../../includes/super_admin_SideNavbar.php";
     ?>
 
-    <section class="home-section">
+    <section class="emp-home-section">
         <?php
         include "../../includes/nav.php";
         ?>
@@ -33,7 +33,7 @@ include('../../utils/ManageUserUtils.php');
             <h1 class="heading">Manage Employees</h1>
             <a href="../../pages/SuperAdmin/addUser.php"><button class="addUser">+</button></a>
 
-            <div class="User">
+            <div class="User ">
 
                 <table class="tablecontent">
 
