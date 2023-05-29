@@ -14,6 +14,7 @@ include('../../utils/ManageUserUtils.php');
 
     <link rel="stylesheet" href="../../css/common.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../../css/manageUser.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/manageEmployees.css?v=<?php echo time(); ?>">
     <title>Bajaj Institute of Technology, Wardha</title>
 </head>
 
@@ -33,7 +34,7 @@ include('../../utils/ManageUserUtils.php');
             <h1 class="heading">Manage Employees</h1>
             <a href="../../pages/SuperAdmin/addUser.php"><button class="addUser">+</button></a>
 
-            <div class="User">
+            <div class="employeeContainer">
 
                 <table class="tablecontent">
 

@@ -60,7 +60,7 @@
 
 
                                 <td class="text-end">
-                                    <a href="users.php?editid=<?php echo $row['userId'] ?>"><i class="fa-solid fa-eye view"></i></a>
+                                    <a href="HOD_viewUserDetails.php?userId=<?php echo $row['userId']?>"><i class="fa-solid fa-eye view"></i></a>
                                 </td>
                                 <!-- <td> Approved</td> -->
                             </tr>
